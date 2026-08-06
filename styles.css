@@ -741,8 +741,8 @@
   /* donate: T3Lemonade band — lemonade-yellow color grade */
   #t3 .band-tint {
     background:
-      linear-gradient(180deg, rgba(246,200,86,.92), rgba(250,225,140,.88)),
-      radial-gradient(120% 80% at 50% 30%, rgba(255,244,190,.45), transparent 70%);
+      linear-gradient(180deg, rgba(246,200,86,.62), rgba(250,225,140,.55)),
+      radial-gradient(120% 80% at 50% 30%, rgba(255,244,190,.3), transparent 70%);
   }
   #t3 .eyebrow { color: #8A6410; }
   #t3 h2 { color: #3D2E08; }
