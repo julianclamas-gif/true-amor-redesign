@@ -1,0 +1,10 @@
+{
+  "name": "true-amor-redesign",
+  "version": "1.0.0",
+  "private": true,
+  "description": "True Amor Foundation website redesign — static site deployed at true-amor-redesign.vercel.app",
+  "scripts": {
+    "start": "python3 -m http.server 8901",
+    "deploy": "vercel --prod --yes"
+  }
+}
