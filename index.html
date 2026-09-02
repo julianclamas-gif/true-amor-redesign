@@ -18,7 +18,20 @@
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="anno-bar" id="annobar" hidden>🎉 <strong>Happy 1st Anniversary!</strong> August 6 marks one year of True Amor Foundation — a whole year of honoring hearts. <span aria-hidden="true">❤︎</span></div>
+<!-- ================= SEASONAL MODULE · September 2026 =================
+     Everything between this marker and END SEASONAL MODULE is the part of the
+     homepage that gets refreshed each month: this announcement bar, the hero
+     eyebrow + lede, the hero teaser card, and the #tinybeats section below.
+     To refresh for a new month, edit copy in place — no layout changes needed.
+     ==================================================================== -->
+<div class="promo-bar">
+  <span class="promo-ekg" aria-hidden="true">
+    <svg viewBox="0 0 64 24"><path d="M0 12h18l3-9 4 18 4-13 3 4h32"/></svg>
+  </span>
+  <strong>Something BIG for Little Hearts is coming.</strong>
+  <span>The Tiny Beats Mobile EKG Unit buildout is officially underway.</span>
+  <a href="#tinybeats">See what’s coming <span aria-hidden="true">→</span></a>
+</div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <symbol id="wave" viewBox="0 0 1666 124" preserveAspectRatio="none">
     <path fill-rule="evenodd" clip-rule="evenodd" d="M0 59.3392C53.3211 62.6751 74.4542 68.7308 96.869 75.1537C111.655 79.3905 126.998 83.7872 152.507 87.6684C246.274 101.936 310.235 76.6378 372.713 51.9265C416.933 34.4369 460.409 17.2411 513.185 14.5738C601.391 10.1158 638.744 28.1556 674.912 45.6234C690.96 53.3737 706.774 61.0114 726.694 66.5215C763.186 76.6157 806.204 65.2888 851.121 53.4618C885.984 44.2821 921.991 34.8012 956.979 34.8012C997.762 34.8012 1020.74 48.0409 1042.34 60.4857C1063.14 72.4726 1082.66 83.7221 1115.59 81.6921C1143.95 79.9433 1163.18 69.8168 1186.13 57.7352C1217.48 41.2339 1255.75 21.0856 1333.67 13.6544C1422.62 5.17156 1473.48 22.4439 1515.72 36.7884C1537.57 44.2106 1557.12 50.849 1578.44 52.7301C1640.97 58.2467 1656.22 59.3392 1666.13 59.3392V123.986H0V59.3392ZM626.861 39.353C612.488 34.9409 587.866 30.9952 586.217 32.6652C585.401 33.4911 591.747 34.8251 600.028 36.566C608.491 38.3452 618.975 40.5494 625.901 43.0703C631.855 45.1667 637.663 47.8077 642.601 50.0529C649.535 53.2058 654.752 55.5783 656.248 54.5667C658.808 52.8346 641.233 43.765 626.861 39.353ZM1218.9 62.3402V62.3406C1212.94 65.1327 1203.36 69.6209 1191.08 72.956C1172.69 77.2855 1173.15 77.8808 1173.94 78.9088C1173.96 78.9334 1173.98 78.9582 1173.99 78.9834C1174.01 79.0063 1174.03 79.0294 1174.05 79.0529C1174.07 79.0929 1174.1 79.1338 1174.13 79.1757C1174.52 79.7867 1191.86 78.9063 1204.7 74.0511C1217.15 68.5849 1227.66 60.0642 1225.48 59.7547C1224.67 59.64 1222.41 60.6959 1218.9 62.3402ZM1251.33 48.0631C1245.43 49.8427 1241.65 50.9807 1241.29 50.0478C1240.52 48.0245 1254.08 42.8646 1268.07 39.138C1281.98 36.0034 1297.03 36.9174 1296.95 37.5095C1296.94 37.6001 1296.94 37.6868 1296.94 37.7705C1296.91 38.7801 1296.9 39.3649 1278.71 41.4756C1268.05 43.0265 1258.24 45.983 1251.33 48.0631ZM286.677 97.0036C286.43 96.0461 282.539 96.8712 276.456 98.1615C269.345 99.6697 259.238 101.813 248.45 102.489C230.101 103.109 230.021 103.69 229.882 104.693C229.871 104.776 229.859 104.862 229.836 104.951C229.688 105.534 244.559 107.669 258.769 105.682C273.128 103.112 287.212 99.0803 286.677 97.0036ZM965.809 54.8064C968.337 54.8064 970.386 53.4814 970.386 51.8469C970.386 50.2127 968.337 48.8874 965.809 48.8874C965.436 48.8873 965.04 48.8796 964.637 48.8718C962.304 48.8267 959.706 48.7764 959.706 50.1698C959.706 50.9154 960.45 51.9456 961.499 52.8455C962.132 53.9887 963.823 54.8064 965.809 54.8064ZM566.059 43.7575C567.744 43.7575 569.11 42.6091 569.11 41.1926C569.11 39.776 567.744 38.6276 566.059 38.6276C564.373 38.6276 563.007 39.776 563.007 41.1926C563.007 42.6091 564.373 43.7575 566.059 43.7575Z"/>
@@ -55,9 +68,9 @@
     <div class="hero-scrim"></div>
     <div class="wrap hero-inner">
       <div class="hero-copy">
-        <p class="eyebrow reveal">In honor of Princess True · Est. 2025</p>
+        <p class="eyebrow reveal">Welcome to September · A new season of hope</p>
         <h1 class="reveal d1">Because every child deserves a <em>healthy heart</em>.</h1>
-        <p class="lede reveal d2">We bring free cardiac screenings, education, and family support to communities across Florida — so hidden pediatric heart conditions are caught early, and no family faces loss alone.</p>
+        <p class="lede reveal d2">A new season of hope, heart health, and impact starts now. We bring free cardiac screenings, education, and family support to communities across Florida — so hidden heart conditions are caught early, and no family faces loss alone.</p>
         <div class="hero-donate reveal d3">
           <a class="btn btn-primary btn-xl" href="https://www.paypal.com/donate/?hosted_button_id=SKGG2S7ZNA9AW" target="_blank" rel="noopener">Donate now</a>
           <div class="give-chips" role="group" aria-label="Quick donation amounts">
@@ -72,17 +85,46 @@
           <a class="btn btn-ghost" href="/contact-us">Become a partner</a>
           <a class="textlink" href="/contact-us" data-interest="screening">Request a screening →</a>
         </div>
-        <p class="hero-note reveal d4">Together, we are <strong>#ForeverTrueAmor ❤︎</strong> · Port St. Lucie &amp; West Palm Beach, FL</p>
+        <p class="hero-note reveal d4">In honor of Princess True · Est. 2025 · Together, we are <strong>#ForeverTrueAmor ❤︎</strong> · Port St. Lucie &amp; West Palm Beach, FL</p>
       </div>
-      <aside class="fund-card anno-card reveal d2" aria-label="In honor of Princess True">
-        <p class="anno-eyebrow">❤︎ Forever True Amor · Est. 2025</p>
-        <p class="anno-headline"><span class="pop">🎉</span> <span class="grad">Happy 1 Year Anniversary!</span> <span class="pop">🎉</span></p>
-        <p class="anno-copy">Her life inspires everything we do — from free heart screenings to family support across Florida.</p>
-        <a class="textlink" href="/our-why">Read True's story →</a>
+      <aside class="fund-card teaser-card reveal d2" aria-labelledby="teaser-h">
+        <p class="teaser-eyebrow"><span class="live-dot" aria-hidden="true"></span> In motion now · September 2026</p>
+        <p class="teaser-kicker">Something <em>BIG</em> for Little Hearts is coming</p>
+        <p class="teaser-headline" id="teaser-h"><span class="grad">Her Legacy is Moving.</span></p>
+        <p class="teaser-copy">The <strong>Tiny Beats Mobile EKG Unit</strong> — a pediatric cardiac unit on wheels — is officially in buildout, bringing free heart screenings straight to the families who need them.</p>
+        <svg class="teaser-ekg" viewBox="0 0 300 44" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path d="M0 22h74l6-15 8 30 8-22 6 7h34l6-15 8 30 8-22 6 7h130"/>
+        </svg>
+        <a class="textlink" href="#tinybeats">Follow the buildout →</a>
       </aside>
     </div>
     <div class="wave-divider wave-bottom" style="color: var(--blush-2)"><svg preserveAspectRatio="none" aria-hidden="true"><use href="#wave"/></svg></div>
   </section>
+<section class="tinybeats" id="tinybeats" aria-labelledby="tb-h">
+    <div class="wrap tb-grid">
+      <div class="tb-copy">
+        <p class="eyebrow reveal">Every Beat Matters · Mobile Campaign</p>
+        <h2 class="reveal d1" id="tb-h">Meet <em>Tiny Beats</em>. The buildout is officially underway.</h2>
+        <p class="lede reveal d2">A pediatric cardiac unit on wheels. Instead of asking families to find their way to a screening, Tiny Beats brings the screening to them — to the schools, churches, and neighborhoods across the Treasure Coast and Palm Beaches where an undetected heart condition too often goes unheard.</p>
+        <ol class="tb-track reveal d2" aria-label="Tiny Beats buildout progress">
+          <li class="tb-step is-done"><span class="tb-state">Complete</span><span class="tb-name">Design &amp; branding</span></li>
+          <li class="tb-step is-now"><span class="tb-state">Underway</span><span class="tb-name">Trailer buildout</span></li>
+          <li class="tb-step"><span class="tb-state">Next</span><span class="tb-name">Equipment &amp; outfitting</span></li>
+          <li class="tb-step"><span class="tb-state">Coming soon</span><span class="tb-name">On the road for kids</span></li>
+        </ol>
+        <p class="tb-line reveal d3">Her legacy is moving — and it is heading straight for the families who need it most.</p>
+        <div class="ctas reveal d3">
+          <a class="btn btn-primary" href="/donate">Fuel the buildout</a>
+          <a class="btn btn-ghost" href="/contact-us">Sponsor Tiny Beats</a>
+        </div>
+      </div>
+      <figure class="tb-art reveal d1">
+        <img src="/img/tinybeats-truck.jpg" alt="Every Beat Matters Mobile Campaign — the Tiny Beats Mobile pediatric cardiac unit trailer, wrapped in pink with the True Amor Foundation logo." loading="lazy" decoding="async" width="1100" height="733">
+        <figcaption>The <em>Every Beat Matters</em> mobile campaign — bringing Tiny Beats to the community. <span aria-hidden="true">❤︎</span></figcaption>
+      </figure>
+    </div>
+  </section>
+<!-- ================= END SEASONAL MODULE ================= -->
 <section class="stats" id="impact-stats" aria-label="Our impact in numbers">
     <div class="wrap stats-grid">
       <div class="stat reveal"><b data-count="188">0</b><span>community outreach events</span></div>
