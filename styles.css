@@ -726,7 +726,7 @@
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
   }
-  .marquee-track { display: flex; align-items: center; gap: 1.5rem; width: max-content; animation: marquee-scroll 52s linear infinite; }
+  .marquee-track { display: flex; align-items: center; gap: 1.5rem; width: max-content; animation: marquee-scroll 68s linear infinite; }
   .marquee:hover .marquee-track, .marquee:focus-within .marquee-track { animation-play-state: paused; }
   .plogo {
     flex: 0 0 auto; height: 132px; width: 248px;
@@ -735,6 +735,8 @@
   }
   /* multiply lets any baked-in white in a logo melt into the section background */
   .plogo img { max-height: 108px; max-width: 100%; width: auto; height: auto; object-fit: contain; mix-blend-mode: multiply; }
+  /* logos that ship on a solid background read as a badge rather than a hard-edged square */
+  .plogo img.tile { border-radius: 14px; }
   @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @media (prefers-reduced-motion: reduce) {
     .marquee { -webkit-mask-image: none; mask-image: none; }
