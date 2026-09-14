@@ -55,6 +55,52 @@
     counters.forEach(animateCount);
   }
 
+  /* Tiny Beats buildout road (home page): when the track scrolls into view the
+     little trailer rolls in at the first stop, drives stop to stop with a short
+     rest at each one, and parks on the current phase (.is-now). Advancing the
+     buildout is just moving that class in index.html. */
+  var route = document.getElementById('tb-route');
+  if (route) {
+    var stops = route.querySelectorAll('.tb-step');
+    var target = 0;
+    for (var si = 0; si < stops.length; si++) {
+      if (stops[si].classList.contains('is-now')) { target = si; break; }
+      if (stops[si].classList.contains('is-done')) target = si;
+    }
+    var setAt = function (i) { route.style.setProperty('--at', i); };
+    var park = function () { route.classList.add('is-parked'); };
+
+    if (reduced || !('IntersectionObserver' in window)) {
+      setAt(target); route.classList.add('is-live'); park();
+    } else {
+      var hopMs = (parseFloat(getComputedStyle(route).getPropertyValue('--tb-hop')) || 2.3) * 1000;
+      var at = 0;
+      var brake = function () {
+        route.classList.remove('is-braking');
+        void route.offsetWidth; /* restart the settle animation */
+        route.classList.add('is-braking');
+      };
+      var nextLeg = function () {
+        if (at >= target) { park(); return; }
+        at += 1;
+        route.classList.add('is-driving');
+        setAt(at);
+        setTimeout(function () {
+          route.classList.remove('is-driving');
+          brake();
+          if (at < target) setTimeout(nextLeg, 750); else setTimeout(park, 250);
+        }, hopMs);
+      };
+      var rio = new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting) return;
+        rio.disconnect();
+        setTimeout(function () { route.classList.add('is-live'); }, 350);
+        setTimeout(nextLeg, 1300);
+      }, { threshold: 0.6 });
+      rio.observe(route);
+    }
+  }
+
   /* progress bar */
   var bar = document.getElementById('fundbar');
   if (bar) {

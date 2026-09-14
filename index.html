@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="preload" as="font" type="font/woff2" href="/fonts/mulish.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/fonts/playfair-regular.woff2" crossorigin>
-<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/styles.css?v=20260914">
 <meta property="og:type" content="website">
 <meta property="og:title" content="True Amor Foundation — Because Every Child Deserves a Healthy Heart">
 <meta property="og:description" content="True Amor Foundation brings free pediatric cardiac screenings, education, and family support across Florida. In honor of Princess True.">
@@ -26,7 +26,7 @@
      ==================================================================== -->
 <div class="promo-bar">
   <span class="promo-ekg" aria-hidden="true">
-    <svg viewBox="0 0 64 24"><path d="M0 12h18l3-9 4 18 4-13 3 4h32"/></svg>
+    <svg width="48" height="18" viewBox="0 0 64 24"><path d="M0 12h18l3-9 4 18 4-13 3 4h32"/></svg>
   </span>
   <strong>Something BIG for Little Hearts is coming.</strong>
   <span>The Tiny Beats Mobile EKG Unit buildout is officially underway.</span>
@@ -50,7 +50,7 @@
     <a class="logo" href="/" aria-label="True Amor Foundation home">
       <img src="/img/logo.png" alt="True Amor Foundation" width="180" height="55">
     </a>
-    <button class="navtoggle" aria-expanded="false" aria-controls="navlinks" id="navtoggle">☰ Menu</button>
+    <button class="navtoggle" aria-expanded="false" aria-controls="navlinks" id="navtoggle"><svg class="navtoggle-ico" width="16" height="12" viewBox="0 0 16 12" aria-hidden="true" focusable="false"><path d="M1 1h14M1 6h14M1 11h14"/></svg> Menu</button>
     <div class="navlinks" id="navlinks">
       <a href="/" class="active" aria-current="page">About Us</a>
       <a href="/our-why">Our WHY!</a>
@@ -70,7 +70,7 @@
       <div class="hero-copy">
         <p class="eyebrow reveal">Welcome to September · A new season of hope</p>
         <h1 class="reveal d1">Because every child deserves a <em>healthy heart</em>.</h1>
-        <p class="lede reveal d2">A new season of hope, heart health, and impact starts now. We bring free cardiac screenings, education, and family support to communities across Florida — so hidden heart conditions are caught early, and no family faces loss alone.</p>
+        <p class="lede reveal d2">A new season of hope, heart health, and impact starts now. We bring free cardiac screenings, education, and family support to communities across Florida, so hidden heart conditions are caught early and no family faces loss alone.</p>
         <div class="hero-donate reveal d3">
           <a class="btn btn-primary btn-xl" href="https://www.paypal.com/donate/?hosted_button_id=SKGG2S7ZNA9AW" target="_blank" rel="noopener">Donate now</a>
           <div class="give-chips" role="group" aria-label="Quick donation amounts">
@@ -91,8 +91,8 @@
         <p class="teaser-eyebrow"><span class="live-dot" aria-hidden="true"></span> In motion now · September 2026</p>
         <p class="teaser-kicker">Something <em>BIG</em> for Little Hearts is coming</p>
         <p class="teaser-headline" id="teaser-h"><span class="grad">Her Legacy is Moving.</span></p>
-        <p class="teaser-copy">The <strong>Tiny Beats Mobile EKG Unit</strong> — a pediatric cardiac unit on wheels — is officially in buildout, bringing free heart screenings straight to the families who need them.</p>
-        <svg class="teaser-ekg" viewBox="0 0 300 44" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <p class="teaser-copy">The <strong>Tiny Beats Mobile EKG Unit</strong> is a pediatric cardiac unit on wheels. It is officially in buildout and will bring free heart screenings straight to the families who need them.</p>
+        <svg class="teaser-ekg" width="300" height="30" viewBox="0 0 300 44" preserveAspectRatio="none" aria-hidden="true" focusable="false">
           <path d="M0 22h74l6-15 8 30 8-22 6 7h34l6-15 8 30 8-22 6 7h130"/>
         </svg>
         <a class="textlink" href="#tinybeats">Follow the buildout →</a>
@@ -105,22 +105,45 @@
       <div class="tb-copy">
         <p class="eyebrow reveal">Every Beat Matters · Mobile Campaign</p>
         <h2 class="reveal d1" id="tb-h">Meet <em>Tiny Beats</em>. The buildout is officially underway.</h2>
-        <p class="lede reveal d2">A pediatric cardiac unit on wheels. Instead of asking families to find their way to a screening, Tiny Beats brings the screening to them — to the schools, churches, and neighborhoods across the Treasure Coast and Palm Beaches where an undetected heart condition too often goes unheard.</p>
-        <ol class="tb-track reveal d2" aria-label="Tiny Beats buildout progress">
-          <li class="tb-step is-done"><span class="tb-state">Complete</span><span class="tb-name">Design &amp; branding</span></li>
-          <li class="tb-step is-now"><span class="tb-state">Underway</span><span class="tb-name">Trailer buildout</span></li>
-          <li class="tb-step"><span class="tb-state">Next</span><span class="tb-name">Equipment &amp; outfitting</span></li>
-          <li class="tb-step"><span class="tb-state">Coming soon</span><span class="tb-name">On the road for kids</span></li>
-        </ol>
-        <p class="tb-line reveal d3">Her legacy is moving — and it is heading straight for the families who need it most.</p>
+        <p class="lede reveal d2">A pediatric cardiac unit on wheels. Instead of asking families to find their way to a screening, Tiny Beats brings the screening to the schools, churches, and neighborhoods across the Treasure Coast and Palm Beaches, where an undetected heart condition too often goes unheard.</p>
+        <!-- To advance the buildout, move "is-now" to the next step and mark the one
+             before it "is-done". The little trailer drives stop to stop and parks on
+             whichever step is "is-now". -->
+        <div class="tb-route reveal d2" id="tb-route">
+          <div class="tb-road" aria-hidden="true"><span class="tb-road-done"></span></div>
+          <div class="tb-rig" aria-hidden="true">
+            <span class="tb-pops"><i></i><i></i><i></i></span>
+            <svg class="tb-rig-svg" width="64" height="36" viewBox="0 0 64 36" focusable="false">
+              <g class="tb-speed"><path d="M-9 12h7M-13 17h9M-8 22h5"/></g>
+              <g class="tb-body">
+                <path class="tb-hitch" d="M49 23.5h9.5"/>
+                <circle class="tb-coupler" cx="59.5" cy="23.5" r="2"/>                <rect class="tb-box" x="4" y="4" width="46" height="23" rx="4.5"/>
+                <rect class="tb-nose" x="41" y="4.75" width="8.25" height="21.5" rx="3.5"/>
+                <path class="tb-trim" d="M8 9.5h30"/>
+                <path class="tb-heart" d="M22.5 22.2c-.3 0-.6-.1-.8-.3-3.5-3-5.6-4.9-5.6-7.3 0-1.9 1.5-3.4 3.3-3.4 1.2 0 2.3.6 3 1.6.7-1 1.8-1.6 3-1.6 1.8 0 3.3 1.5 3.3 3.4 0 2.4-2.1 4.3-5.6 7.3-.1.2-.4.3-.6.3z"/>
+                <path class="tb-pulse" d="M17.5 15.6h2.6l1.1-2.2 1.6 4.4 1.3-3.2.8 1h3.6"/>
+                <path class="tb-fender" d="M8.5 27a5.5 5.5 0 0 1 11 0M34.5 27a5.5 5.5 0 0 1 11 0"/>
+              </g>
+              <g class="tb-wheel"><circle cx="14" cy="30.5" r="4.5"/><circle class="tb-hub" cx="14" cy="30.5" r="1.7"/><path class="tb-spoke" d="M14 26.8v2"/></g>
+              <g class="tb-wheel"><circle cx="40" cy="30.5" r="4.5"/><circle class="tb-hub" cx="40" cy="30.5" r="1.7"/><path class="tb-spoke" d="M40 26.8v2"/></g>
+            </svg>
+          </div>
+          <ol class="tb-track" aria-label="Tiny Beats buildout progress">
+            <li class="tb-step is-done"><span class="tb-state">Complete</span><span class="tb-name">Design &amp; branding</span></li>
+            <li class="tb-step is-now"><span class="tb-state">Underway</span><span class="tb-name">Trailer buildout</span></li>
+            <li class="tb-step"><span class="tb-state">Next</span><span class="tb-name">Equipment &amp; outfitting</span></li>
+            <li class="tb-step"><span class="tb-state">Coming soon</span><span class="tb-name">On the road for kids</span></li>
+          </ol>
+        </div>
+        <p class="tb-line reveal d3">Her legacy is moving, and it is heading straight for the families who need it most.</p>
         <div class="ctas reveal d3">
           <a class="btn btn-primary" href="/donate">Fuel the buildout</a>
           <a class="btn btn-ghost" href="/contact-us">Sponsor Tiny Beats</a>
         </div>
       </div>
       <figure class="tb-art reveal d1">
-        <img src="/img/tinybeats-truck.jpg" alt="Every Beat Matters Mobile Campaign — the Tiny Beats Mobile pediatric cardiac unit trailer, wrapped in pink with the True Amor Foundation logo." loading="lazy" decoding="async" width="1100" height="733">
-        <figcaption>The <em>Every Beat Matters</em> mobile campaign — bringing Tiny Beats to the community. <span aria-hidden="true">❤︎</span></figcaption>
+        <img src="/img/tinybeats-truck.jpg" alt="Every Beat Matters Mobile Campaign: the Tiny Beats Mobile pediatric cardiac unit trailer, wrapped in pink with the True Amor Foundation logo." loading="lazy" decoding="async" width="1100" height="632">
+        <figcaption>The <em>Every Beat Matters</em> mobile campaign is bringing Tiny Beats to the community.</figcaption>
       </figure>
     </div>
   </section>
@@ -142,8 +165,8 @@
       <div>
         <p class="eyebrow reveal">Welcome to True Amor Foundation</p>
         <h2 class="reveal d1">Honoring hearts. Inspiring hope. Supporting families.</h2>
-        <p class="reveal d2">True Amor Foundation was created out of love — inspired by the life and legacy of our precious Princess True. We work to ensure no child suffers or loses their life to an undetected or untreated heart condition.</p>
-        <p class="reveal d2">Through partnerships, education, and advocacy, we strengthen pediatric care and uplift families through community empowerment — with compassion, hope, advocacy, integrity, collaboration, and legacy at the heart of everything we do.</p>
+        <p class="reveal d2">True Amor Foundation was created out of love, inspired by the life and legacy of our precious Princess True. We work to ensure no child suffers or loses their life to an undetected or untreated heart condition.</p>
+        <p class="reveal d2">Through partnerships, education, and advocacy, we strengthen pediatric care and uplift families through community empowerment, with compassion, hope, advocacy, integrity, collaboration, and legacy at the heart of everything we do.</p>
         <div class="ctas reveal d3">
           <a class="textlink" href="/our-why">Read True's story →</a>
         </div>
@@ -154,14 +177,14 @@
     <div class="wrap vision-inner">
       <p class="eyebrow reveal">Our vision</p>
       <blockquote class="reveal d1">“Not every happy life beats with a healthy heart.”</blockquote>
-      <p class="vision-statement reveal d2">A future where every child, regardless of circumstance, has a healthy heart and a chance to thrive — locally and globally.</p>
+      <p class="vision-statement reveal d2">A future where every child, regardless of circumstance, has a healthy heart and a chance to thrive, locally and globally.</p>
     </div>
   </section>
 <section class="values" id="values">
     <div class="wrap">
       <p class="eyebrow reveal">Our core values</p>
       <h2 class="reveal d1">Guided by love. Driven by purpose.</h2>
-      <p class="lede reveal d2">At the heart of True Amor Foundation are values that reflect compassion, hope, and integrity — bringing healing and lasting impact to families.</p>
+      <p class="lede reveal d2">At the heart of True Amor Foundation are values that reflect compassion, hope, and integrity, bringing healing and lasting impact to families.</p>
       <div class="values-grid">
         <div class="value reveal"><div class="vicon"><img src="/img/values/compassion.png" alt="" aria-hidden="true" loading="lazy" decoding="async"></div><h3>Compassion</h3><p>We serve families with empathy, love, and understanding during their most challenging times.</p></div>
         <div class="value reveal d1"><div class="vicon"><img src="/img/values/hope.png" alt="" aria-hidden="true" loading="lazy" decoding="async"></div><h3>Hope</h3><p>We believe in the power of hope to heal hearts and inspire change.</p></div>
@@ -178,7 +201,7 @@
     <div class="wrap">
       <p class="eyebrow reveal">Get in touch</p>
       <h2 class="reveal d1">Connecting hearts. Creating hope.</h2>
-      <p class="reveal d2">Whether you're seeking support, want to partner with us, or simply wish to learn more — we'd love to hear from you. Join us in making a difference for families and little hearts everywhere.</p>
+      <p class="reveal d2">Whether you're seeking support, want to partner with us, or simply wish to learn more, we'd love to hear from you. Join us in making a difference for families and little hearts everywhere.</p>
       <div class="ctas reveal d3">
         <a class="btn btn-onlight" href="/contact-us">Partner with us</a>
         <a class="btn btn-outline" href="/donate">Donate</a>
@@ -190,7 +213,7 @@
     <div class="wrap">
       <p class="eyebrow reveal">Founders &amp; board of directors</p>
       <h2 class="reveal d1">Leading with heart, serving with purpose</h2>
-      <p class="lede reveal d2" style="max-width: 60ch;">Guided by founders Tierra and Torrey Smith and a dedicated board of clinicians, advocates, and community leaders — every decision honors True's legacy.</p>
+      <p class="lede reveal d2" style="max-width: 60ch;">Guided by founders Tierra and Torrey Smith and a dedicated board of clinicians, advocates, and community leaders. Every decision honors True's legacy.</p>
       <div class="board-grid">
         <figure class="member reveal">
           <img src="/img/tierra.jpg" alt="Tierra Smith" loading="lazy" decoding="async">
@@ -292,6 +315,6 @@
   </div>
 </footer>
 
-<script src="/main.js" defer></script>
+<script src="/main.js?v=20260914" defer></script>
 </body>
 </html>

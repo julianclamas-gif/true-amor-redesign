@@ -161,6 +161,7 @@
   .navlinks a:hover { color: var(--rose-deep); border-color: var(--rose); }
   .navlinks .btn { display: none; } /* shown only in the mobile menu */
   .navtoggle { display: none; margin-left: auto; background: none; border: 1px solid var(--line); border-radius: 10px; padding: .45rem .6rem; color: var(--ink); font-size: 1.05rem; cursor: pointer; }
+  .navtoggle-ico { vertical-align: -1px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
 
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
@@ -332,23 +333,97 @@
   .tb-copy h2 em { font-style: italic; color: var(--rose-deep); }
   .tb-copy .lede { max-width: 52ch; }
 
-  /* buildout progress — a road of stops, echoing the campaign artwork */
+  /* buildout progress — a road of stops, echoing the campaign artwork.
+     Stops sit centered in 4 equal columns, so every position below is plain
+     grid math: column width c = (100% - 3 * gap) / 4, stop i center = c/2 + i * (c + gap). */
+  .tb-route {
+    --tb-gap: .9rem;
+    --tb-lane: 46px;                      /* headroom above the road for the trailer */
+    --tb-first: calc(12.5% - .375 * var(--tb-gap));
+    --tb-leg: calc(25% + .25 * var(--tb-gap));
+    --tb-hop: 2.3s;
+    --tb-s: 1.2;                          /* trailer scale; its art is drawn on a 64x36 grid */
+    position: relative; margin: 1.3rem 0 1.4rem; padding-top: var(--tb-lane);
+  }
   .tb-track {
-    list-style: none; margin: 1.6rem 0 1.4rem; padding: 0;
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: .9rem;
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--tb-gap);
   }
-  .tb-step { position: relative; padding-top: 1.5rem; }
-  /* dashed road between stops — drawn per step so it ends at the last one */
-  .tb-step::after {
-    content: ""; position: absolute; top: 5px; left: 18px; right: -1.05rem; height: 2px;
-    background: repeating-linear-gradient(90deg, var(--rose-soft) 0 9px, transparent 9px 18px);
-  }
-  .tb-step:last-child::after { display: none; }
+  .tb-step { position: relative; padding-top: 1.55rem; text-align: center; }
   .tb-step::before {
-    content: ""; position: absolute; top: 0; left: 0;
+    content: ""; position: absolute; top: 0; left: 50%; margin-left: -6px;
     width: 12px; height: 12px; border-radius: 50%;
     background: #fff; border: 2px solid var(--rose-soft);
+    transition: background .35s ease, border-color .35s ease;
   }
+  /* the road: dashed ahead, solid pink where the trailer has already driven */
+  .tb-road {
+    position: absolute; top: calc(var(--tb-lane) + 4.5px); height: 3px;
+    left: var(--tb-first); width: calc(3 * var(--tb-leg));
+    background: repeating-linear-gradient(90deg, var(--rose-soft) 0 9px, transparent 9px 16px);
+    border-radius: 3px;
+  }
+  .tb-road-done {
+    position: absolute; inset: 0 auto 0 0; border-radius: 3px;
+    width: calc(var(--at, 0) * 100% / 3);
+    background: linear-gradient(90deg, var(--rose), var(--rose-deep));
+    transition: width var(--tb-hop) cubic-bezier(.55,0,.25,1);
+  }
+  /* the trailer rides the road; its wheels straddle the stop dot when parked */
+  .tb-rig {
+    position: absolute; z-index: 2; top: calc(var(--tb-lane) + 4.5px - 35px * var(--tb-s));
+    left: calc(var(--tb-first) + var(--at, 0) * var(--tb-leg)); margin-left: calc(-27px * var(--tb-s));
+    width: calc(64px * var(--tb-s)); height: calc(36px * var(--tb-s)); pointer-events: none;
+    opacity: 0; transform: translateY(-10px);
+    transition: left var(--tb-hop) cubic-bezier(.55,0,.25,1), opacity .45s ease, transform .55s cubic-bezier(.34,1.56,.64,1);
+  }
+  .tb-route.is-live .tb-rig { opacity: 1; transform: none; }
+  .tb-rig-svg { display: block; width: 100%; height: 100%; overflow: visible; transform-origin: 42% 97%; }
+  .tb-box { fill: var(--rose); stroke: var(--rose-deep); stroke-width: 1.3; }
+  .tb-nose { fill: #FBE4EC; stroke: var(--rose-deep); stroke-width: 1; }
+  .tb-trim { stroke: #fff; stroke-width: 1.4; stroke-linecap: round; opacity: .75; }
+  .tb-heart { fill: #fff; transform-box: fill-box; transform-origin: center; }
+  .tb-pulse { fill: none; stroke: var(--rose-deep); stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; }
+  .tb-fender { fill: none; stroke: var(--rose-deep); stroke-width: 1.3; stroke-linecap: round; }
+  .tb-hitch { fill: none; stroke: var(--ink-soft); stroke-width: 1.6; stroke-linecap: round; }
+  .tb-coupler { fill: var(--ink-soft); }
+  .tb-wheel { fill: var(--ink); transform-box: fill-box; transform-origin: center; }
+  .tb-hub { fill: #fff; }
+  .tb-spoke { stroke: #fff; stroke-width: 1.2; stroke-linecap: round; }
+  .tb-speed { fill: none; stroke: var(--rose); stroke-width: 1.6; stroke-linecap: round; opacity: 0; transition: opacity .3s ease; }
+
+  .tb-route.is-driving .tb-wheel { animation: tb-spin .42s linear infinite; }
+  .tb-route.is-driving .tb-body { animation: tb-bump .22s ease-in-out infinite alternate; }
+  .tb-route.is-driving .tb-speed { opacity: .9; animation: tb-whoosh .5s linear infinite; }
+  .tb-route.is-braking .tb-rig-svg { animation: tb-settle .7s cubic-bezier(.3,.7,.4,1); }
+  .tb-route.is-parked .tb-heart { animation: tb-beat 1.5s ease-in-out infinite; }
+  @keyframes tb-spin { to { transform: rotate(360deg); } }
+  @keyframes tb-bump { from { transform: translateY(0); } to { transform: translateY(-.9px); } }
+  @keyframes tb-whoosh { 0% { transform: translateX(3px); } 100% { transform: translateX(-3px); } }
+  @keyframes tb-settle {
+    0% { transform: rotate(0); } 30% { transform: rotate(3.5deg); }
+    60% { transform: rotate(-1.4deg); } 100% { transform: rotate(0); }
+  }
+  @keyframes tb-beat {
+    0%, 40%, 100% { transform: scale(1); } 12% { transform: scale(1.28); }
+    22% { transform: scale(1.05); } 30% { transform: scale(1.2); }
+  }
+  /* little hearts that float up when the trailer parks */
+  .tb-pops { position: absolute; left: calc(18px * var(--tb-s)); top: -2px; width: 14px; height: 1px; }
+  .tb-pops i {
+    position: absolute; left: 0; top: 0; width: 11px; height: 10px; opacity: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 11'%3E%3Cpath fill='%23E784A1' d='M6 10.6c-.2 0-.4-.1-.5-.2C2.2 7.6 0 5.8 0 3.4 0 1.5 1.4 0 3.2 0 4.3 0 5.3.6 6 1.5 6.7.6 7.7 0 8.8 0 10.6 0 12 1.5 12 3.4c0 2.4-2.2 4.2-5.5 7-.1.1-.3.2-.5.2z'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+  .tb-route.is-parked .tb-pops i { animation: tb-float 1.9s ease-out forwards; }
+  .tb-route.is-parked .tb-pops i:nth-child(2) { left: 9px; animation-delay: .28s; width: 8px; height: 7px; }
+  .tb-route.is-parked .tb-pops i:nth-child(3) { left: -6px; animation-delay: .52s; width: 7px; height: 6px; }
+  @keyframes tb-float {
+    0% { opacity: 0; transform: translateY(4px) scale(.4); }
+    25% { opacity: 1; transform: translateY(-6px) scale(1); }
+    100% { opacity: 0; transform: translateY(-30px) translateX(4px) scale(.85); }
+  }
+  /* while the trailer is en route, the current stop waits unlit, then lights up on arrival */
+  .tb-route.is-live:not(.is-parked) .tb-step.is-now::before { background: #fff; border-color: var(--rose-soft); animation: none; }
   .tb-step.is-done::before { background: var(--rose); border-color: var(--rose); }
   .tb-step.is-now::before {
     background: var(--rose-deep); border-color: var(--rose-deep);
@@ -371,27 +446,29 @@
   }
   .tinybeats .ctas { display: flex; flex-wrap: wrap; gap: .8rem; }
 
-  .tb-art { margin: 0; }
-  .tb-art img {
-    width: 100%; height: auto; border-radius: 22px;
-    background: #fff; border: 1px solid var(--line);
-    box-shadow: var(--shadow);
-  }
+  /* campaign art sits flush on the section: its white backdrop multiplies into
+     the pink-to-white gradient behind it, so there is no card edge */
+  .tb-art { margin: 0; mix-blend-mode: multiply; }
+  .tb-art img { display: block; width: 100%; height: auto; }
   .tb-art figcaption {
-    margin-top: .85rem; text-align: center; font-size: .88rem; color: var(--ink-soft);
+    margin-top: .2rem; text-align: center; font-size: .88rem; color: var(--ink-soft);
   }
   .tb-art figcaption em { color: var(--rose-deep); font-style: italic; font-weight: 600; }
 
   @media (max-width: 960px) {
     .tb-grid { grid-template-columns: 1fr; }
-    .tb-art img { max-width: 560px; margin: 0 auto; }
+    .tb-art { max-width: 600px; margin: 0 auto; }
   }
   @media (max-width: 620px) {
-    .tb-track { grid-template-columns: 1fr 1fr; row-gap: 1.2rem; }
-    .tb-step::after { display: none; }
-    .tb-step { padding-top: 1.4rem; }
+    .tb-route { --tb-gap: .45rem; --tb-s: 1; --tb-lane: 40px; }
+    .tb-state { font-size: .6rem; letter-spacing: .07em; }
+    .tb-name { font-size: .8rem; line-height: 1.3; }
   }
-  @media (prefers-reduced-motion: reduce) { .tb-step.is-now::before { animation: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .tb-step.is-now::before { animation: none; }
+    .tb-rig, .tb-road-done { transition: none; }
+    .tb-route .tb-rig-svg, .tb-route .tb-heart, .tb-route .tb-pops i { animation: none !important; }
+  }
 
   /* ---------- stats ---------- */
   .stats { background: var(--blush-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: clamp(2.4rem, 5vw, 3.6rem) 0; }
