@@ -183,6 +183,24 @@
     });
   });
 
+  /* volunteer interest checkboxes: shown when "Volunteering" is chosen */
+  var viSel = document.getElementById('f-interest');
+  var vi = document.getElementById('volunteer-interest');
+  if (viSel && vi) {
+    var viOther = document.getElementById('vi-other');
+    var viOtherWrap = document.getElementById('vi-other-wrap');
+    var syncVi = function () { vi.hidden = viSel.value !== 'Volunteering'; };
+    viSel.addEventListener('change', syncVi);
+    viOther.addEventListener('change', function () {
+      viOtherWrap.hidden = !viOther.checked;
+      if (viOther.checked) document.getElementById('vi-other-text').focus();
+    });
+    var pickVolunteer = function () { viSel.value = 'Volunteering'; syncVi(); };
+    document.querySelectorAll('[data-interest="volunteer"]').forEach(function (a) { a.addEventListener('click', pickVolunteer); });
+    if (/^#volunteer/.test(location.hash) || /[?&]interest=volunteer/.test(location.search)) pickVolunteer();
+    syncVi();
+  }
+
   /* lead form -> mailto (contact page only) */
   var form = document.getElementById('leadform');
   if (form) form.addEventListener('submit', function (e) {
@@ -198,11 +216,17 @@
     var org = document.getElementById('f-org').value.trim();
     var interest = document.getElementById('f-interest').value;
     var msg = document.getElementById('f-msg').value.trim();
+    var vols = [];
+    if (interest === 'Volunteering') form.querySelectorAll('input[name="volunteer"]:checked').forEach(function (c) {
+      var other = document.getElementById('vi-other-text').value.trim();
+      vols.push(c.value === 'Other' && other ? 'Other: ' + other : c.value);
+    });
     var subject = encodeURIComponent('[Website] ' + interest + ' — ' + name.value.trim());
     var body = encodeURIComponent(
       'Name: ' + name.value.trim() + '\nEmail: ' + email.value.trim() +
       (org ? '\nOrganization: ' + org : '') +
       '\nInterest: ' + interest +
+      (vols.length ? '\nVolunteer interests: ' + vols.join(', ') : '') +
       (msg ? '\n\n' + msg : '')
     );
     window.location.href = 'mailto:admin@trueamorfoundation.com?subject=' + subject + '&body=' + body;

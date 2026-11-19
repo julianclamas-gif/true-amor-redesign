@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="preload" as="font" type="font/woff2" href="/fonts/mulish.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/fonts/playfair-regular.woff2" crossorigin>
-<link rel="stylesheet" href="/styles.css?v=20261103a">
+<link rel="stylesheet" href="/styles.css?v=20261119a">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Contact Us — True Amor Foundation">
 <meta property="og:description" content="Reach out to True Amor Foundation — partner, sponsor a child, request a screening, volunteer, or say hello.">
@@ -70,7 +70,7 @@
           <div class="way reveal"><div><strong>Become a partner</strong><span>Collaborate as a caregiver, business, hospital, or community advocate.</span></div></div>
           <div class="way reveal d1"><div><strong>Sponsor a child</strong><span>Fund a child's screening and event participation.</span></div></div>
           <div class="way reveal d2"><div><strong>Request a screening</strong><span>Bring the Tiny Beats Mobile unit to your school or organization.</span></div></div>
-          <div class="way reveal d3"><div><strong>Volunteer</strong><span>Offer your time to comfort and uplift families.</span></div></div>
+          <a class="way reveal d3" href="#volunteer-interest" data-interest="volunteer"><div><strong>Volunteer</strong><span>Offer your time to comfort and uplift families.</span></div></a>
         </div>
       </div>
       <form class="lead reveal d2" id="leadform" novalidate>
@@ -100,6 +100,24 @@
             </select>
           </label>
         </div>
+        <fieldset class="vi" id="volunteer-interest" hidden>
+          <legend>Volunteer Interest – How Would You Like to Serve?</legend>
+          <p class="vi-hint">Select all that apply.</p>
+          <div class="vi-grid">
+            <label class="vi-opt"><input type="checkbox" name="volunteer" value="Tiny Beats Mobile Unit – Clinical Support"> <span>Tiny Beats Mobile Unit – Clinical Support</span></label>
+            <label class="vi-opt"><input type="checkbox" name="volunteer" value="Tiny Beats Mobile Unit – Non-Clinical Support"> <span>Tiny Beats Mobile Unit – Non-Clinical Support</span></label>
+            <label class="vi-opt"><input type="checkbox" name="volunteer" value="Tiny Beats Love Kits"> <span>Tiny Beats Love Kits</span></label>
+            <label class="vi-opt"><input type="checkbox" name="volunteer" value="True Art of the Heart"> <span>True Art of the Heart</span></label>
+            <label class="vi-opt"><input type="checkbox" name="volunteer" value="Community Outreach &amp; Special Events"> <span>Community Outreach &amp; Special Events</span></label>
+            <label class="vi-opt"><input type="checkbox" name="volunteer" value="Fundraising Committee"> <span>Fundraising Committee</span></label>
+            <label class="vi-opt"><input type="checkbox" name="volunteer" value="Marketing, Social Media &amp; Communications"> <span>Marketing, Social Media &amp; Communications</span></label>
+            <label class="vi-opt"><input type="checkbox" name="volunteer" value="Administrative Support"> <span>Administrative Support</span></label>
+            <label class="vi-opt"><input type="checkbox" name="volunteer" value="Other" id="vi-other"> <span>Other (please specify)</span></label>
+          </div>
+          <label class="vi-other-text" id="vi-other-wrap" hidden>Please specify
+            <input type="text" name="volunteer_other" id="vi-other-text">
+          </label>
+        </fieldset>
         <label>Message
           <textarea name="message" id="f-msg" placeholder="Tell us a little about your school, organization, or how you'd like to get involved…"></textarea>
         </label>
@@ -144,6 +162,6 @@
   </div>
 </footer>
 
-<script src="/main.js?v=20261103a" defer></script>
+<script src="/main.js?v=20261119a" defer></script>
 </body>
 </html>
