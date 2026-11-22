@@ -233,6 +233,55 @@
     document.getElementById('formok').style.display = 'block';
   });
 
+  /* Pink Friday pop-up (Tierra, 11/21 "Website Add"): shows once per visit on
+     any page, until the end of Nov 30 2026 Eastern. Copy is hers, verbatim. */
+  (function () {
+    if (Date.now() >= Date.parse('2026-12-01T00:00:00-05:00')) return;
+    try { if (sessionStorage.getItem('taf-pinkfri-seen') === '1') return; } catch (e) {}
+    var wish = 'https://www.amazon.com/registries/gl/guest-view/25I8TWD1GPICF';
+    var wrap = document.createElement('div');
+    wrap.className = 'promo-pop';
+    wrap.innerHTML =
+      '<div class="promo-card" role="dialog" aria-modal="true" aria-labelledby="promo-title">' +
+        '<button type="button" class="promo-x" aria-label="Close">&times;</button>' +
+        '<a class="promo-art" href="' + wish + '" target="_blank" rel="noopener">' +
+          '<img src="/img/pink-friday-2026.jpg" width="900" height="900" alt="Pink Friday: This Black Friday, shop with purpose. True Amor Foundation">' +
+        '</a>' +
+        '<div class="promo-body">' +
+          '<h2 id="promo-title">🚨🩷 CAUTION: BLACK FRIDAY HAS OFFICIALLY GONE PINK!</h2>' +
+          '<p>This year, we’re changing the meaning of Black Friday! Instead of just shopping for deals, we’re inviting you to shop with purpose and make a difference that lasts beyond the holiday season.</p>' +
+          '<p>True Amor Foundation is turning everyday purchases into meaningful impact, and we need YOUR help!</p>' +
+          '<p>🩺 <b>Equip Tiny Beats Mobile:</b> Help us stock our Pediatric Cardiac Screening Unit with essential supplies and everyday items needed to bring early detection and lifesaving screenings into our communities.</p>' +
+          '<p>💗 <b>Fill Tiny Beats Love Kits:</b> Help us provide comfort, care, and encouragement to families waiting alongside their hospitalized children.</p>' +
+          '<p>Every item purchased from our Amazon Wish List supports a mission rooted in love and dedicated to protecting little hearts.</p>' +
+          '<p>🛒 <b>This Pink Friday, don’t just fill your shopping cart. Help us fill little hearts with HOPE!</b></p>' +
+          '<a class="btn btn-primary promo-cta" href="' + wish + '" target="_blank" rel="noopener">🩷 Shop Our Amazon Wish List</a>' +
+          '<p class="promo-sign">For little hearts on the road. For families at the bedside.<br><b>Because Every Child Deserves a Healthy Heart.</b> 🩷</p>' +
+          '<p class="promo-tags">#PinkFriday #ShopWithPurpose #TinyBeatsMobile #TinyBeatsLoveKits #ForeverTrueAmor</p>' +
+        '</div>' +
+      '</div>';
+    var lastFocus = null;
+    function close() {
+      wrap.classList.remove('open');
+      document.documentElement.classList.remove('promo-lock');
+      document.removeEventListener('keydown', onKey);
+      setTimeout(function () { wrap.remove(); }, 250);
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+    function onKey(e) { if (e.key === 'Escape') close(); }
+    wrap.addEventListener('click', function (e) { if (e.target === wrap) close(); });
+    wrap.querySelector('.promo-x').addEventListener('click', close);
+    function open() {
+      try { sessionStorage.setItem('taf-pinkfri-seen', '1'); } catch (e) {}
+      lastFocus = document.activeElement;
+      document.body.appendChild(wrap);
+      document.documentElement.classList.add('promo-lock');
+      document.addEventListener('keydown', onKey);
+      requestAnimationFrame(function () { wrap.classList.add('open'); wrap.querySelector('.promo-x').focus({ preventScroll: true }); });
+    }
+    setTimeout(open, reduced ? 0 : 900);
+  })();
+
   /* site music — every page. Browsers require a user gesture before sound can
      start: we try autoplay, fall back to the first tap/click/key, and float a
      ♪ button so visitors can pause it. The track resumes where it left off as
